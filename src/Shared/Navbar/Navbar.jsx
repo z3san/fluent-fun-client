@@ -8,16 +8,13 @@ const Navbar = () => {
           <li><Link to="/instructors">Instructors</Link></li>
           <li><Link to="/classes">Classes</Link></li>
           
-
-          
-          
         </>
       );
           
 
     return (
         <>
-        <div className="navbar fixed z-10 bg-black bg-opacity-30 text-white max-w-screen-xl">
+        <div className="navbar fixed z-10 bg-gray-700 bg-opacity-20 text-white max-w-screen-xl">
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -45,14 +42,15 @@ const Navbar = () => {
             </div>
             <a className="btn btn-ghost normal-case text-xl">FluentFun</a>
           </div>
+        
+          <div className="navbar-end">
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
   
                   {navOptions}
             </ul>
           </div>
-          <div className="navbar-end">
-            <a className="btn">Get started</a>
+            <a className="btn btn-sm">Login</a>
           </div>
         </div>
       </>
