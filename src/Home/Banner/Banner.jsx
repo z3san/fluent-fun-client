@@ -1,14 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Typewriter from 'typewriter-effect';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 const Banner = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duration of animation in milliseconds
+      delay: 200, // Delay before the animation starts in milliseconds
+      easing: 'ease-in-out', // Easing function for the animation
+      once: true, // Whether the animation should only happen once on scroll
+      offset: 100 // Offset (in pixels) from the original trigger point
+    });
+  }, []);
+
   return (
     <div className="hero min-h-screen" style={{backgroundImage: "url(https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=822&q=80)"}}>
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-          <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-          <button className="btn btn-primary">Get Started</button>
+          <div className='text-5xl animate-pulse'>
+            <Typewriter
+              options={{
+                strings: ['Hello there', 'こんにちは', 'Bonjour', 'مرحبًا'],
+                autoStart: true,
+                loop: true,
+                delay: 100,
+                deleteSpeed: 50
+              }}
+            />
+          </div>
+          <p className="text-3xl mb-5" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500" data-aos-easing="ease-out-back">
+            Language Immersion Adventure: Unlocking the World Through Words!
+          </p>
         </div>
       </div>
     </div>
