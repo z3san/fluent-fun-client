@@ -52,9 +52,9 @@ const Login = () => {
               Create an account
             </Link>
           </div>
-          <div className="text-center">
+          <div className="text-center flex flex-col items-center justify-center gap-1">
             <p className="text-gray-600">Or sign in with:</p>
-             <FcGoogle className='mx-40 mt-10 text-5xl'/>
+             <FcGoogle className='text-5xl'/>
             <div>
             </div>
           </div>
