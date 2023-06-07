@@ -3,6 +3,7 @@ import { Button, Input, Form } from 'antd';
 import { UserOutlined, MailOutlined, LockOutlined, GoogleOutlined } from '@ant-design/icons';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const { handleSubmit, register, errors, getValues } = useForm();
@@ -80,7 +81,8 @@ const Register = () => {
             </Button>
           </Form.Item>
           <div className="text-center flex flex-col items-center justify-center gap-1">
-            <p className="text-gray-600">Or sign in with:</p>
+            <p className="text-gray-600">Already Have an account? <Link to='/login'>Login Here</Link></p>
+            <p>Or Sign in with:</p>
              <FcGoogle className='text-5xl'/>
             </div>
         </Form>

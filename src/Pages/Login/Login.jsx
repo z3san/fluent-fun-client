@@ -48,6 +48,7 @@ const Login = () => {
             </Button>
           </Form.Item>
           <div className="text-center">
+            <p>New here?</p>
             <Link to="/register" className="block text-blue-500 hover:text-blue-800">
               Create an account
             </Link>
