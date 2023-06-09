@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.12",
     "antd": "^5.6.0",
     "aos": "^2.3.4",
+    "axios": "^1.4.0",
     "firebase": "^9.22.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
@@ -25,6 +27,7 @@
     "react-router-dom": "^6.11.2",
     "react-tsparticles": "^2.10.1",
     "sort-by": "^1.2.0",
+    "sweetalert2": "^11.7.11",
     "tsparticles": "^2.10.1",
     "typewriter-effect": "^2.20.1"
   },
@@ -41,5 +44,18 @@
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.9"
-  }
+  },
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-z3san.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-z3san/issues"
+  },
+  "homepage": "https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-z3san#readme",
+  "description": ""
 }

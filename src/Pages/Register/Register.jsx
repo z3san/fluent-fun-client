@@ -1,95 +1,164 @@
-import React from 'react';
-import { Button, Input, Form } from 'antd';
-import { UserOutlined, MailOutlined, LockOutlined, GoogleOutlined } from '@ant-design/icons';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
+import Swal from 'sweetalert2';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
-  const { handleSubmit, register, errors, getValues } = useForm();
+  const [error, setError] = useState('')
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    getValues
+  } = useForm();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     console.log(data);
-  };
 
-  const handleGoogleLogin = () => {
-    // Perform Google login logic here
+    const { name, email, password, photoUrl } = data;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+
+        updateUserProfile(name, photoUrl)
+          .then(() => {
+            const saveUser = { name, email, role: 'student' };
+            fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(saveUser)
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  Swal.fire({
+                    title: 'User Registration Successful',
+                    showClass: {
+                      popup: 'animate_animated animate_fadeInDOwn '
+                    },
+                    hideClass: {
+                      popup: 'animate_animated animate_fadeOutUp'
+                    }
+                  });
+                  navigate(from, { replace: true });
+                }
+              });
+          })
+          .catch((error) => {
+            setError(error.message)
+            console.log(error.message)});
+      })
+      .catch((error) => {
+        setError(error.message)
+        console.log(error)});
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-blue-100">
       <div className="w-full max-w-md">
-        <Form name="register-form" className="bg-white rounded-lg shadow-lg px-8 py-10" onFinish={onSubmit}>
+        <form
+          name="register-form"
+          className="bg-white rounded-lg shadow-lg px-8 py-2"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <h2 className="text-3xl text-center mb-6 text-blue-800">Register</h2>
-          <Form.Item
-            name="name"
-            rules={[{ required: true, message: 'Please enter your name' }]}
-          >
-            <Input prefix={<UserOutlined />} placeholder="Name" />
-          </Form.Item>
-          <Form.Item
-            name="email"
-            rules={[
-              { required: true, message: 'Please enter your email' },
-              { type: 'email', message: 'Please enter a valid email' },
-            ]}
-          >
-            <Input prefix={<MailOutlined />} placeholder="Email" />
-          </Form.Item>
-          <Form.Item
-            name="photoUrl"
-            rules={[{ required: true, message: 'Please enter your photo URL' }]}
-          >
-            <Input prefix={<UserOutlined />} placeholder="Photo URL" />
-          </Form.Item>
-          <Form.Item
-            name="password"
-            rules={[
-              { required: true, message: 'Please enter your password' },
-              {
-                min: 6,
-                message: 'Password must be at least 6 characters',
-              },
-              {
-                pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*]).*$/,
-                message: 'Password must contain at least one uppercase letter, lowercase letter, number, and special character',
-              },
-            ]}
-          >
-            <Input.Password prefix={<LockOutlined />} placeholder="Password" />
-          </Form.Item>
-          <Form.Item
-            name="confirmPassword"
-            dependencies={['password']}
-            rules={[
-              { required: true, message: 'Please confirm your password' },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue('password') === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(new Error('Passwords do not match'));
+          <div className="form-item mb-4">
+            <input
+              {...register('name', {
+                required: 'Please enter your name'
+              })}
+              className="border border-gray-300 rounded px-3 py-2 w-full"
+              placeholder="Name"
+            />
+            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+          </div>
+          <div className="form-item mb-4">
+            <input
+              {...register('email', {
+                required: 'Please enter your email',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Please enter a valid email'
+                }
+              })}
+              className="border border-gray-300 rounded px-3 py-2 w-full"
+              placeholder="Email"
+            />
+            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+          </div>
+          <div className="form-item mb-4">
+            <input
+              {...register('photoUrl', {
+                required: 'Please enter your photo URL'
+              })}
+              className="border border-gray-300 rounded px-3 py-2 w-full"
+              placeholder="Photo URL"
+            />
+            {errors.photoUrl && <p className="text-red-500">{errors.photoUrl.message}</p>}
+          </div>
+          <div className="form-item mb-4">
+            <input
+              {...register('password', {
+                required: 'Please enter your password',
+                minLength: {
+                  value: 6,
+                  message: 'Password must be at least 6 characters'
                 },
-              }),
-            ]}
-          >
-            <Input.Password prefix={<LockOutlined />} placeholder="Confirm Password" />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" className="w-full" style={{ backgroundColor: '#1890ff' }}>
+                pattern: {
+                  value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*]).*$/,
+                  message:
+                    'Password must contain at least one uppercase letter, lowercase letter, number, and special character'
+                }
+              })}
+              type="password"
+              className="border border-gray-300 rounded px-3 py-2 w-full"
+              placeholder="Password"
+            />
+            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+          </div>
+          <div className="form-item mb-4">
+            <input
+              {...register('confirmPassword', {
+                required: 'Please confirm your password',
+                validate: (value) =>
+                  value === getValues('password') || 'Passwords do not match'
+              })}
+              type="password"
+              className="border border-gray-300 rounded px-3 py-2 w-full"
+              placeholder="Confirm Password"
+            />
+            {errors.confirmPassword && (
+              <p className="text-red-500">{errors.confirmPassword.message}</p>
+            )}
+          </div>
+          <div className="form-item">
+            <p className='text-center text-red-500'>{error}</p>
+            <button type="submit" className="w-full bg-blue-500 text-white rounded px-4 py-2">
               Register
-            </Button>
-          </Form.Item>
-          <div className="text-center flex flex-col items-center justify-center gap-1">
-            <p className="text-gray-600">Already Have an account? <Link to='/login'>Login Here</Link></p>
-            <p>Or Sign in with:</p>
-             <FcGoogle className='text-5xl'/>
-            </div>
-        </Form>
+            </button>
+          </div>
+          <p className="text-center">Already have an account?</p>
+          <Link to="/login" className="block text-blue-500 hover:text-blue-800 text-center">
+            Login Here
+          </Link>
+          <SocialLogin />
+        </form>
       </div>
     </div>
   );
 };
 
 export default Register;
-
