@@ -13,9 +13,13 @@ const SocialLogin = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle().then(result => {
       const user = result.user ;
+      console.log(user);
       const name = user.displayName
       const email = user.email
-      const saveUser = { name, email, role: 'student' };
+      const photoURL = user.photoURL
+  
+      const saveUser = { name, email, role: 'student' , photoURL  };
+
       console.log(user);
       // Make a POST request to store user info in the backend
       fetch('http://localhost:5000/users/google', {

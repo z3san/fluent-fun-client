@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AiOutlineBars } from 'react-icons/ai';
 import useRole from '../../Hooks/useRole';
 
+import { FaArrowLeft, FaHome } from 'react-icons/fa';
+
 const Sidebar = () => {
+
   const [isActive, setActive] = useState(false);
   const {data} = useRole()
+
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -14,6 +18,8 @@ const Sidebar = () => {
 
   const admin = (
     <>
+     <h1 className='text-center'>Admin Panel</h1> <Link to='/'><FaArrowLeft className='text-white'/></Link>
+    <div className='divider' ></div>
       <li>
         <NavLink
           to="/dashboard/manageUsers"
@@ -35,6 +41,8 @@ const Sidebar = () => {
 
   const instructor = (
     <>
+    <h1 className='text-center'>Instructors Panel</h1>
+    <div className='divider' ></div>
       <li>
         <NavLink
           to="/dashboard/addaclass"
@@ -56,12 +64,13 @@ const Sidebar = () => {
 
   const student = (
     <>
+     <h1 className='text-center'>Students DashBoard </h1>
+    <div className='divider' ></div>
       <li>
         <NavLink
           to="/dashboard/myselectedclass"
-          className={({ isActive }) => (isActive ? 'text-white' : 'default')}
-        >
-          Add A Class
+          className={({ isActive }) => (isActive ? 'text-white' : 'default')}>
+          Selected Classes
         </NavLink>
       </li>
       <li>
@@ -69,7 +78,7 @@ const Sidebar = () => {
           to="/dashboard/myenrolledclass"
           className={({ isActive }) => (isActive ? 'text-white' : 'default')}
         >
-          My Classes
+          Enrolled Classes
         </NavLink>
       </li>
     </>
@@ -101,6 +110,9 @@ const Sidebar = () => {
           {data.role === 'instructor' &&  instructor}
           { data.role === 'student' && student }
         </ul>
+        <div>
+         <Link className='flex items-center text-white gap-3 justify-center' to='/'><FaHome/>Back To Home</Link>
+        </div>
       </div>
     </>
   );

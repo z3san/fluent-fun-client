@@ -13,6 +13,9 @@ import AddClass from "../Pages/InstructorPages/AddClass/AddClass";
 import MyClass from "../Pages/InstructorPages/MyClass/MyClass";
 import MyEnrolledClass from "../Pages/StudentPages/MyEnrolledClass/MyEnrolledClass";
 import MySelectedClass from "../Pages/StudentPages/MySelectedClass/MySelectedClass";
+import ApprovedClasses from "../Pages/ApprovedClasses/ApprovedClasses";
+import Instructors from "../Pages/Instructors/Instructors";
+ import Payment from "../Pages/Dashboard/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -31,6 +34,14 @@ export const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register></Register>
+            },
+            {
+                path: 'approvedClasses',
+                element: <ApprovedClasses></ApprovedClasses>
+            },
+            {
+                path: 'instructors',
+                element: <Instructors></Instructors>
             }
         ]
 
@@ -41,6 +52,13 @@ export const router = createBrowserRouter([
         children: [
             {path: 'manageUsers',
             element: <ManageUsers></ManageUsers>
+
+            },
+            {
+                path: 'payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params})=> fetch(`http://localhost:5000/classesCarts/${params.id}`)
+               
 
             },
             {

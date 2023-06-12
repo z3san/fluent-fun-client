@@ -3,8 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 import { TbLanguage } from "react-icons/tb";
 import { AuthContext } from "../../Providers/AuthProviders";
 
+import useRole from "../../Hooks/useRole";
+
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const {data} = useRole()
 
   const handleLogOut = () => {
     logOut()
@@ -17,7 +20,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-300" : "default")}
+          className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
           to="/"
         >
           Home
@@ -25,7 +28,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-300" : "default")}
+          className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
           to="/instructors"
         >
           Instructors
@@ -33,22 +36,32 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-300" : "default")}
-          to="/classes"
+          className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
+          to="/approvedClasses"
         >
           Classes
         </NavLink>
       </li>
-      {
-        user && <li>
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-300" : "default")}
-          to="/dashboard"
-        >
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+  <li>
+    <NavLink
+      className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
+      to={
+        data.role === "admin"
+          ? "/dashboard/manageClasses"
+          : data.role === "student"
+          ? "/dashboard/myselectedclass"
+          : data.role === "instructor"
+          ? "/dashboard/myclass"
+          : ""
       }
+    >
+      Dashboard
+    </NavLink>
+  </li>
+)}
+
+
       {user && (
         <img
           title={user?.displayName}
@@ -71,7 +84,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar fixed z-10 bg-gray-700 bg-opacity-20 text-white max-w-screen-xl">
+      <div className="navbar fixed z-10 bg-black bg-opacity-30 text-white max-w-screen-xl">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

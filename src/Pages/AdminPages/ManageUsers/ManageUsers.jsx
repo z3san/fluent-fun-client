@@ -4,9 +4,10 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
-const AllUsers = () => {
+const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery(['users'], async () => {
     const res = await axios.get('http://localhost:5000/users');
+    
     return res.data;
   });
 
@@ -136,4 +137,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default ManageUsers;

@@ -23,16 +23,16 @@ const Register = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    const { name, email, password, photoUrl } = data;
+    const { name, email, password, photoURL } = data;
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
 
-        updateUserProfile(name, photoUrl)
+        updateUserProfile(name, photoURL)
           .then(() => {
-            const saveUser = { name, email, role: 'student' };
+            const saveUser = { name, email, photoURL, role: 'student' };
             fetch('http://localhost:5000/users', {
               method: 'POST',
               headers: {
@@ -101,13 +101,13 @@ const Register = () => {
           </div>
           <div className="form-item mb-4">
             <input
-              {...register('photoUrl', {
+              {...register('photoURL', {
                 required: 'Please enter your photo URL'
               })}
               className="border border-gray-300 rounded px-3 py-2 w-full"
               placeholder="Photo URL"
             />
-            {errors.photoUrl && <p className="text-red-500">{errors.photoUrl.message}</p>}
+            {errors.photoURL && <p className="text-red-500">{errors.photoURL.message}</p>}
           </div>
           <div className="form-item mb-4">
             <input
