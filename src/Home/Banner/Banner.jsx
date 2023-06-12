@@ -21,7 +21,8 @@ const Banner = () => {
       showThumbs={false}
       showStatus={false}>
       <div>
-        <img src="https://www.sophia.ac.jp/assets/uploads/2022/11/%E5%A4%96%E5%9B%BD%E8%AA%9E%E5%AD%A6%E9%83%A8_%E3%83%88%E3%82%99%E3%82%A4%E3%83%84%E8%AA%9E%E5%AD%A6%E7%A7%91_pc.jpg" />
+      
+        <img src="https://i.ibb.co/b633XsR/6a2ef76b506bd5eb0d90423dd6d91993.jpg" />
       </div>
      
       <div>
@@ -31,7 +32,7 @@ const Banner = () => {
         <img src="https://static1.ara.cat/clip/d3959273-edb3-4a1c-a4e6-545ee292b190_16-9-aspect-ratio_default_0.jpg" />
       </div>
       <div>
-        <img src="https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,g_center,h_900,q_60,w_1600/6a2ef76b506bd5eb0d90423dd6d91993.jpg" />
+        <img src="https://www.sophia.ac.jp/assets/uploads/2022/11/%E5%A4%96%E5%9B%BD%E8%AA%9E%E5%AD%A6%E9%83%A8_%E3%83%88%E3%82%99%E3%82%A4%E3%83%84%E8%AA%9E%E5%AD%A6%E7%A7%91_pc.jpg" />
       </div>
       <div>
         <img src="https://www.uis.edu/sites/default/files/styles/min_1400/public/2021-10/edl-hero1.jpg?itok=tvofC7vV" />

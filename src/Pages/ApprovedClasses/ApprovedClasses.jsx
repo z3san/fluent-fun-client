@@ -32,6 +32,7 @@ const ApprovedClasses = () => {
         price: data.price,
         seats: data.seats,
         email: user.email,
+        payment: false,
       };
   
       axios.post("http://localhost:5000/classesCarts", cartItem)

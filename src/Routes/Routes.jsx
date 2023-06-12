@@ -17,6 +17,7 @@ import ApprovedClasses from "../Pages/ApprovedClasses/ApprovedClasses";
 import Instructors from "../Pages/Instructors/Instructors";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 
 
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             { path: '/',
             element: <Home></Home>
