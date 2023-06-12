@@ -17,10 +17,10 @@ const Sidebar = () => {
   const admin = (
     <>
       <Fade cascade direction="right">
-        <h1 className='text-center'>Admin Panel</h1>
-        <Link to='/'>
-          <FaArrowLeft className='text-white' />
-        </Link>
+        <div className='flex items-center'>
+          <h1 className='text-center'>Admin Panel</h1>
+          
+        </div>
         <div className='divider'></div>
         <li>
           <NavLink
@@ -28,7 +28,7 @@ const Sidebar = () => {
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
             <FaUsers className='icon' />
-            Manage Users
+            <span>Manage Users</span>
           </NavLink>
         </li>
         <li>
@@ -37,7 +37,7 @@ const Sidebar = () => {
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
             <FaCog className='icon' />
-            Manage Classes
+            <span>Manage Classes</span>
           </NavLink>
         </li>
       </Fade>
@@ -47,7 +47,9 @@ const Sidebar = () => {
   const instructor = (
     <>
       <Fade cascade direction="right">
-        <h1 className='text-center'>Instructors Panel</h1>
+        <div className='flex items-center'>
+          <h1 className='text-center'>Instructors Panel</h1>
+        </div>
         <div className='divider'></div>
         <li>
           <NavLink
@@ -55,7 +57,7 @@ const Sidebar = () => {
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
             <FaPlus className='icon' />
-            Add A Class
+            <span>Add A Class</span>
           </NavLink>
         </li>
         <li>
@@ -64,7 +66,7 @@ const Sidebar = () => {
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
             <FaChalkboardTeacher className='icon' />
-            My Classes
+            <span>My Classes</span>
           </NavLink>
         </li>
       </Fade>
@@ -74,7 +76,9 @@ const Sidebar = () => {
   const student = (
     <>
       <Fade cascade direction="right">
-        <h1 className='text-center'>Students Dashboard</h1>
+        <div className='flex items-center'>
+          <h1 className='text-center'>Students Dashboard</h1>
+        </div>
         <div className='divider'></div>
         <li>
           <NavLink
@@ -82,7 +86,7 @@ const Sidebar = () => {
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
             <FaListAlt className='icon' />
-            Selected Classes
+            <span>Selected Classes</span>
           </NavLink>
         </li>
         <li>
@@ -91,7 +95,7 @@ const Sidebar = () => {
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
             <FaCheckSquare className='icon' />
-            Enrolled Classes
+            <span>Enrolled Classes</span>
           </NavLink>
         </li>
       </Fade>
@@ -127,7 +131,7 @@ const Sidebar = () => {
         <div>
           <Link className='flex items-center text-white gap-3 justify-center' to='/'>
             <FaHome className='icon' />
-            Back To Home
+            <span>Back To Home</span>
           </Link>
         </div>
       </div>

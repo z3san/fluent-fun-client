@@ -70,6 +70,17 @@ const Navbar = () => {
           alt=""
         />
       )}
+
+{!user && (
+        <li>
+          <NavLink
+            className="text-blue-500"
+            to="/dashboard"
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
       {user ? (
         <button className="btn btn-sm mx-2" onClick={handleLogOut}>
           Logout
@@ -79,6 +90,7 @@ const Navbar = () => {
           <button className="btn  btn-sm ">Login</button>
         </Link> 
       )}
+        
     </>
   );
 
