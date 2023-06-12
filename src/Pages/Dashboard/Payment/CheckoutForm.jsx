@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
-import "./CheckoutForm.css";
+
 import axios from "axios";
 
 import { Helmet } from "react-helmet-async";
