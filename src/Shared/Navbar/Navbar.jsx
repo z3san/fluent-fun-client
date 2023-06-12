@@ -20,7 +20,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
+          className={({ isActive }) => (isActive ? "text-pink-500 font-bold" : "default")}
           to="/"
         >
           Home
@@ -28,7 +28,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
+          className={({ isActive }) => (isActive ? "text-pink-500 font-bold" : "default")}
           to="/instructors"
         >
           Instructors
@@ -36,7 +36,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
+          className={({ isActive }) => (isActive ? "text-pink-500 font-bold" : "default")}
           to="/approvedClasses"
         >
           Classes
@@ -45,7 +45,7 @@ const Navbar = () => {
       {user && (
   <li>
     <NavLink
-      className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
+      className={({ isActive }) => (isActive ? "text-pink-500 font-bold" : "default")}
       to={
         data.role === "admin"
           ? "/dashboard/manageClasses"
@@ -74,7 +74,7 @@ const Navbar = () => {
 {!user && (
         <li>
           <NavLink
-            className="text-blue-500"
+            className={({ isActive }) => (isActive ? "text-blue-500" : "default")}
             to="/dashboard"
           >
             Dashboard

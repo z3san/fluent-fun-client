@@ -22,7 +22,7 @@ const Banner = () => {
       showStatus={false}>
       <div>
       
-        <img src="https://i.ibb.co/b633XsR/6a2ef76b506bd5eb0d90423dd6d91993.jpg" />
+        <img src="https://i.ibb.co/w0C3mSM/Cover-photo-5.jpg" />
       </div>
      
       <div>
