@@ -1,42 +1,57 @@
 import React, { useEffect } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+
 import Typewriter from 'typewriter-effect';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
 const Banner = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, // Duration of animation in milliseconds
-      delay: 200, // Delay before the animation starts in milliseconds
-      easing: 'ease-in-out', // Easing function for the animation
-      once: true, // Whether the animation should only happen once on scroll
-      offset: 100 // Offset (in pixels) from the original trigger point
-    });
-  }, []);
+  
 
   return (
-    <div className="hero min-h-screen" style={{backgroundImage: "url(https://plus.unsplash.com/premium_photo-1661876481462-a1ef663b8524?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1058&q=80)"}}>
-      <div className="hero-overlay bg-opacity-60"></div>
-      <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md">
-          <div className='text-5xl animate-pulse'>
-            <Typewriter
-              options={{
-                strings: ['Hello!', 'hola!', 'こんにちは', 'Bonjour', 'مرحبًا'],
-                autoStart: true,
-                loop: true,
-                delay: 100,
-                deleteSpeed: 50
-              }}
-            />
-          </div>
-          <p className="text-3xl mb-5" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500" data-aos-easing="ease-out-back">
-            Language Immersion Adventure: Unlocking the World Through Words!
-          </p>
-        </div>
+<>
+
+    <div className='hero'>
+        
+    <Carousel autoPlay
+      infiniteLoop
+      showArrows={false}
+      showThumbs={false}
+      showStatus={false}>
+      <div>
+        <img src="https://www.sophia.ac.jp/assets/uploads/2022/11/%E5%A4%96%E5%9B%BD%E8%AA%9E%E5%AD%A6%E9%83%A8_%E3%83%88%E3%82%99%E3%82%A4%E3%83%84%E8%AA%9E%E5%AD%A6%E7%A7%91_pc.jpg" />
       </div>
+     
+      <div>
+        <img src="https://www.smartparents.sg/sites/default/files/image-9256254-1f20f1a64dc3d0e6ead9339a8f4a6d08-info-6-ways-to-raise-a-bilingual-kid7_3.jpg" />
+      </div>
+      <div>
+        <img src="https://static1.ara.cat/clip/d3959273-edb3-4a1c-a4e6-545ee292b190_16-9-aspect-ratio_default_0.jpg" />
+      </div>
+      <div>
+        <img src="https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,g_center,h_900,q_60,w_1600/6a2ef76b506bd5eb0d90423dd6d91993.jpg" />
+      </div>
+      <div>
+        <img src="https://www.uis.edu/sites/default/files/styles/min_1400/public/2021-10/edl-hero1.jpg?itok=tvofC7vV" />
+      </div>
+    </Carousel>
     </div>
+      
+    
+
+
+
+
+
+</>
+
+
   );
 };
 
 export default Banner;
+<div className="hero-content text-center text-neutral-content">
+
+</div>

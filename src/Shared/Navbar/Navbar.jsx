@@ -113,7 +113,7 @@ const Navbar = () => {
 
           <Link to="/" className="flex items-center gap-2 normal-case text-xl">
             {" "}
-            <TbLanguage className="text-2xl" /> FluentFun
+            <img className="w-8" src="https://i.ibb.co/TPM4S3r/logo.png" alt="" /> FluentFun
           </Link>
         </div>
 
