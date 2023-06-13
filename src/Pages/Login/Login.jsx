@@ -5,6 +5,7 @@ import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -18,11 +19,11 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         Swal.fire({
           title: "User Login Successful",
           showClass: {
@@ -46,14 +47,20 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-blue-100">
+   <div>
+      <Helmet>
+        <title>FluentFun | Sign In</title>
+      </Helmet>
+
+
+     <div className="flex items-center justify-center min-h-screen bg-blue-100">
       <div className="w-full max-w-md">
         <form
           name="login-form"
           className="bg-white rounded-lg shadow-lg px-8 py-10"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h2 className="text-3xl text-center mb-6 text-blue-800">Login</h2>
+          <h2 className="text-3xl text-center mb-6 text-blue-800">Sign In</h2>
           <div className="form-item mb-4">
             <input
               {...register("email", {
@@ -117,6 +124,7 @@ const Login = () => {
         </form>
       </div>
     </div>
+   </div>
   );
 };
 

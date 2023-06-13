@@ -5,6 +5,7 @@ import { MdAttachMoney, MdEmail, MdPeople, MdPerson, MdPersonPinCircle } from 'r
 import useRole from '../../Hooks/useRole';
 import { AuthContext } from '../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const ApprovedClasses = () => {
   const [classData, setClassData] = useState([]);
@@ -16,7 +17,7 @@ const ApprovedClasses = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/approvedClasses');
+      const response = await axios.get('https://fluentfun-server.vercel.app/approvedClasses');
       setClassData(response.data);
     } catch (error) {
       console.log(error);
@@ -33,9 +34,10 @@ const ApprovedClasses = () => {
         seats: data.seats,
         email: user.email,
         payment: false,
+        enrolledStudent: data.enrolledStudent,
       };
   
-      axios.post("http://localhost:5000/classesCarts", cartItem)
+      axios.post("https://fluentfun-server.vercel.app/classesCarts", cartItem)
         .then((response) => {
           console.log(response.data);
           if (response.data.insertedId) {
@@ -80,6 +82,11 @@ const ApprovedClasses = () => {
 
   return (
     <>
+  <Helmet>
+        <title>FluentFun | Classes</title>
+      </Helmet>
+
+
     <div className="  md:p-20">
       <h1 className="text-3xl font-serif font-bold mb-4">Our Classes</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Student = () => {
+const History = () => {
     return (
         <div>
-            Student
+            Payment History
         </div>
     );
 };
 
-export default Student;
+export default History;

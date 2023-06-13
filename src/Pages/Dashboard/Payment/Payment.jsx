@@ -10,15 +10,15 @@ const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 const Payment = () => {
   const data = useLoaderData();
   console.log(data);
-  const price = parseFloat(data.price);
+  ;
   return (
     <div>
       <Helmet>
         <title>Fluent Fun | Payments</title>
       </Helmet>
-      <h1 className="text-center">payment</h1>
+      <h1 className="text-center font-serif text-3xl font-bold">Payment</h1>
       <Elements stripe={stripePromise}>
-        <CheckoutForm price={price} />
+        <CheckoutForm data={data} />
       </Elements>
     </div>
   );

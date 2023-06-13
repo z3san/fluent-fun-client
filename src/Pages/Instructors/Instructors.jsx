@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MdPerson, MdEmail } from 'react-icons/md';
+import { Helmet } from 'react-helmet-async';
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/instructors')
+      .get('https://fluentfun-server.vercel.app/instructors')
       .then((response) => setInstructors(response.data))
       .catch((error) => console.log(error));
   }, []);
 
   return (
     <>
+<Helmet>
+  <title>FluentFun | Instructors</title>
+</Helmet>
+
       <div className="md:py-20">
         <h1 className="text-center font-serif text-5xl mb-5">Our Instructors</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

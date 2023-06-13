@@ -10,7 +10,7 @@ const useSelectClass = () => {
     queryKey: ["classesCarts", user?.email],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/classesCarts?email=${user?.email}`);
+      const res = await axios.get(`https://fluentfun-server.vercel.app/classesCarts?email=${user?.email}`);
       return res.data;
     },
   });

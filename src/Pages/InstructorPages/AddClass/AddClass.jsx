@@ -10,7 +10,7 @@ const AddClass = () => {
 
   const handleAddClass = async (data) => {
     const { name, classImg, seats, price } = data;
-    const enrolled = 0;
+    const enrolledStudent = 0;
     const newData = {
         instructorName: user?.displayName,
         email: user?.email,
@@ -19,11 +19,11 @@ const AddClass = () => {
         seats: parseFloat(seats),
         price: parseFloat(price),
         status: "pending",
-        enrolledStudent : parseFloat(enrolled)
+        enrolledStudent : parseFloat(enrolledStudent)
       };
     console.log(newData);
     try {
-      const response = await axios.post("http://localhost:5000/classes", {
+      const response = await axios.post("https://fluentfun-server.vercel.app/classes", {
         ...newData,
         status: "pending",
       });

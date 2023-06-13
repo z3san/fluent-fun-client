@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
   const [error, setError] = useState('')
@@ -21,19 +22,19 @@ const Register = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const { name, email, password, photoURL } = data;
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
 
         updateUserProfile(name, photoURL)
           .then(() => {
             const saveUser = { name, email, photoURL, role: 'student' };
-            fetch('http://localhost:5000/users', {
+            fetch('https://fluentfun-server.vercel.app/users', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -67,6 +68,13 @@ const Register = () => {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>FluentFun | Register</title>
+      </Helmet>
+
+
+    
     <div className="flex items-center justify-center min-h-screen bg-blue-100">
       <div className="w-full max-w-md">
         <form
@@ -158,6 +166,7 @@ const Register = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

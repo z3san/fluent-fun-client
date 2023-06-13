@@ -4,8 +4,8 @@ const useUsers =()=>{
      const {data: users = [] , isLoading: loading, refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async()=>{
-            const res = await fetch('http://localhost:5000/users')
-            console.log(res);
+            const res = await fetch('https://fluentfun-server.vercel.app/users')
+          
             return res.json();
         }
        

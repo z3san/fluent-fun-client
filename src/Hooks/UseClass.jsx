@@ -4,7 +4,7 @@ const UseClass = () => {
   const { data = [], refetch } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/classes");
+      const res = await fetch("https://fluentfun-server.vercel.app/classes");
       const result = await res.json();
       return result;
     },

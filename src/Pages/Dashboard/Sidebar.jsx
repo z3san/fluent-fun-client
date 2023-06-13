@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineBars } from 'react-icons/ai';
 import useRole from '../../Hooks/useRole';
 import { Fade } from 'react-awesome-reveal';
-import { FaArrowLeft, FaHome, FaUsers, FaCog, FaPlus, FaChalkboardTeacher, FaListAlt, FaCheckSquare } from 'react-icons/fa';
-
+import {  FaHome, FaUsers, FaCog, FaPlus, FaChalkboardTeacher, FaListAlt, FaCheckSquare, FaHistory } from 'react-icons/fa';
+import { AuthContext } from '../../Providers/AuthProviders';
+import { GrUserAdmin } from "react-icons/gr";
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
   const { data } = useRole();
+  const {user} = useContext(AuthContext)
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -17,18 +19,22 @@ const Sidebar = () => {
   const admin = (
     <>
       <Fade cascade direction="right">
-        <div className='flex items-center'>
+        <div className='flex flex-col items-center justify-center'>
           <h1 className='text-center'>Admin Panel</h1>
+          <p className='flex items-center gap-2'><GrUserAdmin className='text-red-500'/> {user.displayName}</p>
           
         </div>
         <div className='divider'></div>
-        <li>
+     <ul className='mx-auto ml-12 my-5 flex flex-col gap-5'>
+     <li>
           <NavLink
             to="/dashboard/manageUsers"
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
-            <FaUsers className='icon' />
+           <div className='flex items-center gap-2'>
+           <FaUsers className='icon' />
             <span>Manage Users</span>
+           </div>
           </NavLink>
         </li>
         <li>
@@ -36,10 +42,24 @@ const Sidebar = () => {
             to="/dashboard/manageClasses"
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
-            <FaCog className='icon' />
+           <div className='flex items-center gap-2'>
+           <FaCog className='icon' />
             <span>Manage Classes</span>
+           </div>
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'text-white' : 'default')}
+          >
+            <div className='flex items-center gap-2'>
+            <FaHome className='icon' />
+            <span>Back to Home</span>
+            </div>
+          </NavLink>
+        </li>
+     </ul>
       </Fade>
     </>
   );
@@ -47,17 +67,21 @@ const Sidebar = () => {
   const instructor = (
     <>
       <Fade cascade direction="right">
-        <div className='flex items-center'>
+        <div className='flex flex-col justify-center  items-center'>
           <h1 className='text-center'>Instructors Panel</h1>
+          <p>Welcome {user.displayName}!</p>
         </div>
         <div className='divider'></div>
+        <ul className='mx-auto ml-12 my-5 flex flex-col gap-5'>
         <li>
           <NavLink
             to="/dashboard/addaclass"
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
-            <FaPlus className='icon' />
+         <div className='flex items-center gap-2'>
+         <FaPlus className='icon' />
             <span>Add A Class</span>
+         </div>
           </NavLink>
         </li>
         <li>
@@ -65,10 +89,24 @@ const Sidebar = () => {
             to="/dashboard/myclass"
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
-            <FaChalkboardTeacher className='icon' />
+           <div className='flex items-center gap-2'>
+           <FaChalkboardTeacher className='icon' />
             <span>My Classes</span>
+           </div>
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'text-white' : 'default')}
+          >
+            <div className='flex items-center gap-2'>
+            <FaHome className='icon' />
+            <span>Back to Home</span>
+            </div>
+          </NavLink>
+        </li>
+        </ul>
       </Fade>
     </>
   );
@@ -76,17 +114,22 @@ const Sidebar = () => {
   const student = (
     <>
       <Fade cascade direction="right">
-        <div className='flex items-center'>
-          <h1 className='text-center'>Students Dashboard</h1>
+        <div className='flex flex-col items-center'>
+          <h1 className='text-center font-bold'>Students Dashboard</h1>
+          <p className='mt-5'>Welcome {user.displayName}!</p>
         </div>
         <div className='divider'></div>
-        <li>
+       <ul className='mx-auto ml-12 my-5 flex flex-col gap-5'>
+       <li>
           <NavLink
             to="/dashboard/myselectedclass"
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
+            <div className='flex items-center gap-2'>
             <FaListAlt className='icon' />
             <span>Selected Classes</span>
+            </div>
+        
           </NavLink>
         </li>
         <li>
@@ -94,10 +137,34 @@ const Sidebar = () => {
             to="/dashboard/myenrolledclass"
             className={({ isActive }) => (isActive ? 'text-white' : 'default')}
           >
-            <FaCheckSquare className='icon' />
-            <span>Enrolled Classes</span>
+             <div className='flex items-center gap-2'>    <FaCheckSquare className='icon' />
+            <span>Enrolled Classes</span></div>
+        
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/dashboard/paymentHistory"
+            className={({ isActive }) => (isActive ? 'text-white' : 'default')}
+          >
+              <div className='flex items-center gap-2'> 
+            <FaHistory className='icon' />
+            <span>Payment History</span>
+            </div>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'text-white' : 'default')}
+          >
+            <div className='flex items-center gap-2'>
+            <FaHome className='icon' />
+            <span>Back to Home</span>
+            </div>
+          </NavLink>
+        </li>
+       </ul>
       </Fade>
     </>
   );
@@ -128,12 +195,7 @@ const Sidebar = () => {
           {data.role === 'instructor' && instructor}
           {data.role === 'student' && student}
         </ul>
-        <div>
-          <Link className='flex items-center text-white gap-3 justify-center' to='/'>
-            <FaHome className='icon' />
-            <span>Back To Home</span>
-          </Link>
-        </div>
+       
       </div>
     </>
   );

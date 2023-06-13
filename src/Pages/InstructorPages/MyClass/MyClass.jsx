@@ -46,7 +46,7 @@ const MyClass = () => {
                 </p>
                
                <p className="mb-2">Price: ${classObj.price}</p>
-                <button className=' btn btn-sm'>Update</button>
+                <button className=' btn bg-blue-500 flex flex-1 text-white hover:bg-blue-700 btn-sm'>Update</button>
                </div>
               
             ))}

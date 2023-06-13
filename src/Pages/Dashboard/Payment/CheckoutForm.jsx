@@ -5,20 +5,23 @@ import axios from "axios";
 
 import { Helmet } from "react-helmet-async";
 import UseAuth from "../../../Hooks/UseAuthentication";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ data }) => {
   const stripe = useStripe();
+  const { price, classId, seats, enrolledStudent, _id } = data;
   const { user } = UseAuth();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
-
+  const navigate = useNavigate()
   useEffect(() => {
     if (price > 0) {
       axios
-        .post("http://localhost:5000/create-payment-intent", { price })
+        .post("https://fluentfun-server.vercel.app/create-payment-intent", { price })
         .then((res) => {
           //   console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
@@ -73,12 +76,40 @@ const CheckoutForm = ({ price }) => {
     }
 
     setProcessing(false);
-
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
       // save payment information
-      // todo added database
+      const payment = {
+        transactionId: paymentIntent.id,
+        date: new Date(),
+        seats: seats - 1,
+        enrolledStudent: enrolledStudent + 1,
+        payment: true,
+      };
+
+      axios
+        .put(`https://fluentfun-server.vercel.app/payments/${_id}`, payment)
+        .then((res) => {
+          if (res.data.modifiedCount > 0) {
+            const update = {
+              enrolledStudent: enrolledStudent + 1,
+              seats: seats - 1,
+            };
+            axios
+              .put(`https://fluentfun-server.vercel.app/classUpdates/${classId}`, update)
+              .then((res) => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                  // display confirm sweet alert
+                  Swal.fire("Payment successful!", "You are enrolled", "success");
+                   navigate("/dashboard/myenrolledclass");
+                  setProcessing(true);
+                }
+              });
+          }
+        });
     }
+  
   };
 
   return (
@@ -110,10 +141,10 @@ const CheckoutForm = ({ price }) => {
           Pay
         </button>
       </form>
-      {cardError && <p className="text-error ml-8">{cardError}</p>}
+      {cardError && <p className="text-error ml-8">{cardError.message}</p>}
       {transactionId && (
-        <p className="text-success ml-8">
-          Transaction complete with transactionId : {transactionId}
+        <p className="text-green-600 ml-8">
+          Transaction complete with transactionId : <span className="text-red-500">{transactionId}</span>
         </p>
       )}
     </>

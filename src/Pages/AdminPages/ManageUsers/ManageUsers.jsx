@@ -6,15 +6,15 @@ import { useQuery } from '@tanstack/react-query';
 
 const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery(['users'], async () => {
-    const res = await axios.get('http://localhost:5000/users');
+    const res = await axios.get('https://fluentfun-server.vercel.app/users');
     
     return res.data;
   });
 
   const handleMakeAdmin = (user) => {
-    axios.patch(`http://localhost:5000/users/admin/${user._id}`)
+    axios.patch(`https://fluentfun-server.vercel.app/users/admin/${user._id}`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount) {
           refetch();
           Swal.fire({
@@ -32,9 +32,9 @@ const ManageUsers = () => {
   };
 
   const handleMakeInstructor = (user) => {
-    axios.patch(`http://localhost:5000/users/instructor/${user._id}`)
+    axios.patch(`https://fluentfun-server.vercel.app/users/instructor/${user._id}`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount) {
           refetch();
           Swal.fire({
@@ -52,9 +52,9 @@ const ManageUsers = () => {
   };
 
   const handleDelete = (user) => {
-    axios.delete(`http://localhost:5000/users/${user._id}`)
+    axios.delete(`https://fluentfun-server.vercel.app/users/${user._id}`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         if (data.deletedCount > 0) {
           refetch();
         }

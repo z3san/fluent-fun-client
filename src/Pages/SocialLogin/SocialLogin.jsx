@@ -22,7 +22,7 @@ const SocialLogin = () => {
 
       console.log(user);
       // Make a POST request to store user info in the backend
-      fetch('http://localhost:5000/users/google', {
+      fetch('https://fluentfun-server.vercel.app/users/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const SocialLogin = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
+          // console.log(data);
           navigate(from, { replace: true });
         })
         .catch(error => {

@@ -3,10 +3,7 @@ import Home from "../Home/Home/Home";
 import Main from "../Layout/Main";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import Student from "../Pages/Dashboard/Student";
-import Admin from "../Pages/Dashboard/Admin";
 import Dashboard from "../Pages/Dashboard/Dashboard";
-import Instructor from "../Pages/Dashboard/Instructor";
 import ManageUsers from "../Pages/AdminPages/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/AdminPages/ManageClasses/ManageClasses";
 import AddClass from "../Pages/InstructorPages/AddClass/AddClass";
@@ -18,6 +15,7 @@ import Instructors from "../Pages/Instructors/Instructors";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import History from "../Pages/StudentPages/History/History";
 
 
 
@@ -61,7 +59,7 @@ export const router = createBrowserRouter([
             {
                 path: 'payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params})=> fetch(`http://localhost:5000/classesCarts/${params.id}`)
+                loader: ({params})=> fetch(`https://fluentfun-server.vercel.app/classesCarts/${params.id}`)
                
 
             },
@@ -85,6 +83,10 @@ export const router = createBrowserRouter([
                 path: 'myenrolledclass',
                 element: <MyEnrolledClass></MyEnrolledClass>
             },
+            {
+                path: 'paymentHistory',
+                element: <History></History>
+            }
             
         ]
     }
