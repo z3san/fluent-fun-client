@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const MySelectedClass = () => {
 
     const [cart, refetch] = useSelectClass()
-    // console.log(cart);
+     console.log(cart);
     
   const handleDelete = (item) => {
     Swal.fire({
@@ -41,21 +41,21 @@ const MySelectedClass = () => {
        <h1 className="text-3xl font-bold mb-6 text-center">My Selected Classes</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {cart.map((classObj) => (
-          <div key={classObj._id} className="card shadow-lg">
-            <img src={classObj.classImg} alt="" className="w-full h-40 object-cover" />
-            <div className="card-body">
-              <h3 className="text-xl font-bold">{classObj.name}</h3>
-             
-              <p className="text-gray-500">Price: {classObj.price}</p>
-              <p className="text-gray-500">Seats: {classObj.seats}</p>
-              <div className="flex justify-between mt-4">
-              <Link to={`/dashboard/payment/${classObj._id}`}>  <button className="btn btn-sm bg-yellow-500 hover:bg-yellow-600">Pay</button></Link>
-                <button className="btn btn-sm bg-gray-300" onClick={() => handleDelete(classObj)}>
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
+         classObj.payment === false &&  <div key={classObj._id} className="card shadow-lg">
+         <img src={classObj.classImg} alt="" className="w-full h-40 object-cover" />
+         <div className="card-body">
+           <h3 className="text-xl font-bold">{classObj.name}</h3>
+          
+           <p className="text-gray-500">Price: {classObj.price}</p>
+           <p className="text-gray-500">Seats: {classObj.seats}</p>
+           <div className="flex justify-between mt-4">
+           <Link to={`/dashboard/payment/${classObj._id}`}>  <button className="btn btn-sm bg-yellow-500 hover:bg-yellow-600">Pay</button></Link>
+             <button className="btn btn-sm bg-gray-300" onClick={() => handleDelete(classObj)}>
+               Delete
+             </button>
+           </div>
+         </div>
+       </div>
         ))}
       </div> 
     </div>
