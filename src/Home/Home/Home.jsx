@@ -13,9 +13,9 @@ const Home = () => {
         <title>FluentFun | Home</title>
       </Helmet>
             <Banner></Banner>
-            <TestimonialSection></TestimonialSection>
             <PopularInstructor></PopularInstructor>
             <OurServices></OurServices>
+            <TestimonialSection></TestimonialSection>
         </div>
     );
 };

@@ -21,19 +21,23 @@ const PopularInstructor = () => {
 
   return (
     <div>
-      <h1 className="text-center text-5xl mb-5 mt-5 font-serif ">Popular Instructors</h1>
-      <div className="grid grid-cols-3 gap-4">
+      <h1 className="text-center md:text-3xl lg:text-5xl font-serif mb-5 mt-5">Popular Instructors</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {instructors.slice(0, 6).map((instructor) => (
           <motion.div
-            key={instructor.id}
+            key={instructor._id}
             className="bg-white p-4 rounded-lg shadow-md relative overflow-hidden"
             variants={cardVariants}
             initial="initial"
             whileHover="hover"
           >
-            <img src={instructor.photoURL} alt={instructor.name} className="w-full h-96 object-cover rounded-lg mb-4" />
-            <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-              <div className="text-white text-lg font-bold">{instructor.name}</div>
+            <img
+              src={instructor.photoURL}
+              alt={instructor.name}
+              className="w-full h-48 md:h-96 object-cover rounded-lg mb-4"
+            />
+            <div className="absolute bottom-0 left-0 bg-gray-100 text-black w-full py-2 px-4 transition-colors duration-300">
+              {instructor.name}
             </div>
           </motion.div>
         ))}
