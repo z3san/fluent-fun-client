@@ -6,9 +6,9 @@ const Banner = () => {
   return (
     <AwesomeSlider bullets={false} >
       <div className='w-full' data-src="https://i.ibb.co/mS6sNdz/Cover-photo-5.jpg" />
-      <div data-src="https://www.smartparents.sg/sites/default/files/image-9256254-1f20f1a64dc3d0e6ead9339a8f4a6d08-info-6-ways-to-raise-a-bilingual-kid7_3.jpg" />
-      <div data-src="https://static1.ara.cat/clip/d3959273-edb3-4a1c-a4e6-545ee292b190_16-9-aspect-ratio_default_0.jpg" />
-      <div data-src="https://www.sophia.ac.jp/assets/uploads/2022/11/%E5%A4%96%E5%9B%BD%E8%AA%9E%E5%AD%A6%E9%83%A8_%E3%83%88%E3%82%99%E3%82%A4%E3%83%84%E8%AA%9E%E5%AD%A6%E7%A7%91_pc.jpg" />
+      <div data-src="https://i.ibb.co/0MzmzM9/6489dc6cec9176334b5e5832.png" />
+      <div data-src="https://i.ibb.co/HY9Prwv/6489e1939d9a36014bf75ee8.jpg" />
+      <div data-src="https://i.ibb.co/9WppWCQ/6489e34aec9176334b5edc55.png" />
     </AwesomeSlider>
   );
 };
