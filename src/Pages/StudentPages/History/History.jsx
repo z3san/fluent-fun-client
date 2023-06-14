@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import useSelectClass from '../../../Hooks/useSelectClass';
-import { FaDollarSign, FaCalendarAlt, FaUser, FaEnvelope, FaUsers, FaBarcode, FaBook } from 'react-icons/fa';
+import { FaDollarSign, FaCalendarAlt, FaEnvelope, FaBarcode, FaBook } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -16,7 +16,9 @@ const History = () => {
 
   return (
     <div className="overflow-x-auto">
-      <h1 className="text-center font-bold text-3xl mb-5" data-aos="fade-up">Payment History</h1>
+      <h1 className="text-center font-bold text-3xl mb-5" data-aos="fade-up">
+        Payment History
+      </h1>
       <table className="w-full bg-white border border-gray-200">
         <thead>
           <tr className="bg-gray-100">
@@ -44,23 +46,28 @@ const History = () => {
         </thead>
         <tbody>
           {sortedCart && sortedCart.length > 0 ? (
-            sortedCart.map((item, index) => (
-              <tr
-                key={item._id}
-                className="border-b border-gray-200"
-                data-aos="fade-up"
-                data-aos-delay={600 + index * 100}
-              >
-                <td className="py-3 px-4 text-center">{item.date}</td>
-                <td className="py-3 px-4 text-center">{item.name}</td>
-                <td className="py-3 px-4 text-center"> {item.price}</td>
-                <td className="py-3 px-4 text-center">{item.email}</td>
-                <td className="py-3 px-4 text-center">{item.transactionId}</td>
-              </tr>
-            ))
+            sortedCart.map((item, index) => {
+              if (item.payment) {
+                return (
+                  <tr
+                    key={item._id}
+                    className="border-b border-gray-200"
+                    data-aos="fade-up"
+                    data-aos-delay={600 + index * 100}
+                  >
+                    <td className="py-3 px-4 text-center">{item.date}</td>
+                    <td className="py-3 px-4 text-center">{item.name}</td>
+                    <td className="py-3 px-4 text-center">{item.price}</td>
+                    <td className="py-3 px-4 text-center">{item.email}</td>
+                    <td className="py-3 px-4 text-center">{item.transactionId}</td>
+                  </tr>
+                );
+              }
+              return null;
+            })
           ) : (
             <tr>
-              <td colSpan="6" className="text-center py-3">
+              <td className="py-3 px-4 text-center" colSpan={5}>
                 No payment history found.
               </td>
             </tr>
